@@ -1,0 +1,180 @@
+package Student;
+
+public class ScoreInput extends StuInfo {
+
+	StuInfo[] s = new StuInfo[10];
+
+	ScoreInput() {
+	}
+
+	void scoreInput() {
+
+		System.out.println("[[ 성적입력 ]]");
+		
+		while (count < s.length) {
+
+			System.out.println((count + 1) + "번째 학생의 이름을 입력해주세요. < 숫자 0을 입력하면 성적입력을 취소합니다. >");
+			name = sc.next();
+			if (name.equals("0")) {
+				System.out.println("성적입력을 취소합니다.");
+				return;
+			}
+			System.out.println();
+
+			System.out.println(name + "학생의 성적을 입력합니다. < 숫자 0을 입력하면 성적입력을 취소합니다. >");
+			System.out.print("국어성적을 입력해주세요. < 숫자 0을 입력하면 성적입력을 취소합니다. >\n");
+			kor = sc.nextInt();
+			System.out.print("영어성적을 입력해주세요. < 숫자 0을 입력하면 성적입력을 취소합니다. >\n");
+			eng = sc.nextInt();
+			System.out.print("수학성적을 입력해주세요. < 숫자 0을 입력하면 성적입력을 취소합니다. >\n");
+			math = sc.nextInt();
+			if (kor == 0 || eng == 0 || math == 0) {
+				System.out.println("성적수정을 취소합니다.");
+				return;
+			}
+
+			s[count] = new StuInfo(name, kor, eng, math, total, avg, rank, grade);
+
+			if (s[count].avg >= 90) {
+				s[count].grade = "A";
+				if (s[count].avg >= 98) {
+					s[count].grade += "+";
+				} else if (s[count].avg <= 92) {
+					s[count].grade += "-";
+				}
+			} else if (s[count].avg >= 80) {
+				s[count].grade = "B";
+				if (s[count].avg >= 88) {
+					s[count].grade += "+";
+				} else if (s[count].avg <= 82) {
+					s[count].grade += "-";
+				}
+			} else if (s[count].avg >= 70) {
+				s[count].grade = "C";
+				if (s[count].avg >= 78) {
+					s[count].grade += "+";
+				} else if (s[count].avg <= 72) {
+					s[count].grade += "-";
+				}
+			} else if (s[count].avg >= 60) {
+				s[count].grade = "D";
+				if (s[count].avg >= 68) {
+					s[count].grade += "+";
+				} else if (s[count].avg <= 62) {
+					s[count].grade += "-";
+				}
+			} else {
+				s[count].grade = "F";
+			}
+
+			System.out.println();
+			System.out.println(name + "학생의 성적입력이 완료되었습니다.");
+			System.out.println();
+
+			count++;
+
+		} // while
+
+	}// void
+
+	void scoreOutput() {
+		
+		System.out.println("[[ 성적출력 ]]");
+		System.out.println("이름\t국어\t영어\t수학\t총점\t평균\t등수\t학점");
+		System.out.println("------------------------------------------------------------------------");
+		for (int i = 0; i < count; i++) {
+			System.out.printf("%s\t%d\t%d\t%d\t%d\t%.2f\t%d\t%s\n", s[i].name, s[i].kor, s[i].eng, s[i].math, s[i].total,
+					s[i].avg, s[i].rank, s[i].grade);
+		}
+		System.out.println();
+		System.out.println("성적출력이 완료되었습니다.");
+		System.out.println();
+		
+	}// void
+
+	void scoreModify() {
+		
+		System.out.println("[[ 성적수정 ]]");
+		System.out.println("성적수정을 진행할 학생의 이름을 입력해주세요. < 숫자 0을 입력하면 성적수정을 취소합니다. >");
+		checkName = sc.next();
+		if ( checkName.equals("0") ) {
+			System.out.println(checkName + "의 성적수정을 취소합니다.");
+			return;
+		}
+		
+		for (int i = 0; i < s.length; i++) {
+			if (checkName.equals(s[i].name)) {
+				checkNo = i;
+				flag = 1;
+				System.out.println(s[i].name + "학생을 찾았습니다. 성적수정을 시작합니다.");
+			}
+		}
+
+		if (flag == 0) {
+			System.out.println(checkName + "과 일치하는 항목을 찾지 못했습니다. 다시 입력하세요.");
+			return;
+		}
+
+//		flag = 0;
+		
+		System.out.print("1. " + checkName + "의 국어성적수정\t");
+		System.out.print("2. " + checkName + "의 영어성적수정\t");
+		System.out.print("3. " + checkName + "의 수학성적수정\t");
+		System.out.println("0. " + checkName + "의 성적수정취소");
+		System.out.println("--------------------------------------------------------------------");
+		System.out.println("원하는 항목의 번호를 입력해주세요.");
+		choice = sc.nextInt();
+		System.out.println();
+		
+		switch ( choice ) {
+		
+		case 1:
+			System.out.println(s[checkNo].name + "의 국어성적을 수정합니다.");
+			System.out.println("현재 국어점수 : " + s[checkNo].kor);
+			System.out.println("수정할 국어점수 : ");
+			s[checkNo].kor = sc.nextInt();
+			break;
+			
+		case 2:
+			System.out.println(s[checkNo].name + "의 영어성적을 수정합니다.");
+			System.out.println("현재 영어점수 : " + s[checkNo].kor);
+			System.out.println("수정할 영어점수 : ");
+			s[checkNo].kor = sc.nextInt();
+			break;
+			
+		case 3:
+			System.out.println(s[checkNo].name + "의 수학성적을 수정합니다.");
+			System.out.println("현재 수학점수 : " + s[checkNo].kor);
+			System.out.println("수정할 수학점수 : ");
+			s[checkNo].kor = sc.nextInt();
+			break;
+			
+		case 0:
+			System.out.println(s[checkNo].name + "의 성적수정을 취소합니다.");
+			break;
+		
+		}//switch
+		
+		s[checkNo].total = s[checkNo].kor + s[checkNo].eng + s[checkNo].math;
+		s[checkNo].avg = s[checkNo].total / 3.0;
+		
+	}//void
+	
+	void rankInput() {
+		
+		for ( int i = 0; i < count; i++ ) {
+			rnum = 1;
+			for ( int j = 0; j < count; j++ ) {
+				if ( s[i].avg == s[j].avg ) {
+					rnum++;
+				}
+			}
+			s[i].rank = rnum;
+		}
+		
+		System.out.println("등수처리가 완료되었습니다.");
+		System.out.println();
+		
+	}//void
+
+}// class
