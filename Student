@@ -1,0 +1,49 @@
+package Student;
+
+import java.util.Scanner;
+
+public class Student {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		int choice;
+		MainScreen main = new MainScreen();
+		ScoreInput input = new ScoreInput();
+		ProgramOff off = new ProgramOff();
+		
+		loop:
+		while ( true ) {
+			
+			choice = main.mainScreen();
+			
+			switch ( choice ) {
+			
+			case 1:
+				input.scoreInput();
+				break;
+				
+			case 2:
+				input.scoreOutput();
+				break;
+				
+			case 3:
+				input.scoreModify();
+				break;
+				
+			case 4:
+				input.rankInput();
+				break;
+				
+			case 0:
+				off.ProgramOff();
+				break loop;
+			
+			}//switch
+			
+		}//while
+		
+	}//main
+
+}//class
