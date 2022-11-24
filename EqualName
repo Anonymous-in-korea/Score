@@ -1,0 +1,13 @@
+package Student;
+
+public class EqualName {
+
+	String stuNum;
+	
+	EqualName(){}
+	
+	EqualName(String stuNum){
+		this.stuNum = stuNum;
+	}
+	
+}
