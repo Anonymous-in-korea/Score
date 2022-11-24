@@ -20,23 +20,35 @@ public class Student {
 			
 			switch ( choice ) {
 			
-			case 1:
+			case 1://성적입력
 				input.scoreInput();
 				break;
 				
-			case 2:
+			case 2://성적출력
 				input.scoreOutput();
 				break;
 				
-			case 3:
+			case 3://성적수정
 				input.scoreModify();
 				break;
 				
-			case 4:
+			case 4://학생검색
+				input.stuSearch();
+				break;
+				
+			case 5://등수처리
 				input.rankInput();
 				break;
 				
-			case 0:
+			case 6://학생정보저장
+				input.scoreSave();
+				break;
+				
+			case 7://학생정보불러오기
+				input.scoreLoad();
+				break;
+				
+			case 0://프로그램종료
 				off.ProgramOff();
 				break loop;
 			
